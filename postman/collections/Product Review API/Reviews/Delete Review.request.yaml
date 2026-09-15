@@ -6,5 +6,16 @@ headers:
 pathVariables:
   reviewId: rev_456
 settings: {}
+scripts:
+  - type: afterResponse
+    language: text/javascript
+    code: |-
+      pm.test('Status code is 200 or 204', function () {
+        pm.expect(pm.response.code).to.be.oneOf([200, 204]);
+      });
+
+      pm.test('Response time is below 2000ms', function () {
+        pm.expect(pm.response.responseTime).to.be.below(2000);
+      });
 examples: ./.resources/Delete Review.resources/examples
 order: 4000
