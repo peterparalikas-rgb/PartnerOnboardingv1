@@ -1,5 +1,8 @@
 workspace:
   id: eec9ba34-abc5-4f7d-936c-056ba8dfed71
+
+# Each entry here maps a local resource to one or more corresponding objects in Postman Cloud
+
 cloudResources:
   collections:
     ../postman/collections/Product Review API: 58226427-55929d2a-0306-4568-a9f6-9213287db31e
