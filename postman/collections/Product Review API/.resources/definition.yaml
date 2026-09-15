@@ -1,0 +1,14 @@
+$kind: collection
+description: |-
+  # Product Review API
+
+  A simple REST API for a product review application. It manages **products** and their **reviews**.
+
+  - **Products** have an `id`, `name`, `description`, `price`, `averageRating`, and `reviewCount`.
+  - **Reviews** belong to a product and include an `author`, a `rating` (an integer from **1 to 5**), a `title`, and a `body`, along with `createdAt` and `updatedAt` timestamps.
+
+  All endpoints are relative to the base URL, which is stored in the `{{baseUrl}}` collection variable (`https://api.productreview.example.com/v1`).
+
+  Requests are grouped into two folders: **Products** and **Reviews**.
+variables:
+  baseUrl: https://d657d452-55b0-48d1-ac4f-4e2df9809838.mock.pstmn.io

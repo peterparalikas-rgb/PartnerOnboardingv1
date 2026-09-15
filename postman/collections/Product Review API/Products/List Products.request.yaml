@@ -1,0 +1,11 @@
+$kind: http-request
+url: "{{baseUrl}}/products?page=1&limit=20"
+method: GET
+headers:
+  Accept: application/json
+queryParams:
+  page: "1"
+  limit: "20"
+settings: {}
+examples: ./.resources/List Products.resources/examples
+order: 1000

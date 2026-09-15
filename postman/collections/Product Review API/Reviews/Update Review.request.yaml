@@ -1,0 +1,19 @@
+$kind: http-request
+url: "{{baseUrl}}/reviews/:reviewId"
+method: PUT
+headers:
+  Content-Type: application/json
+  Accept: application/json
+pathVariables:
+  reviewId: rev_456
+body:
+  type: json
+  content: |-
+    {
+      "rating": 4,
+      "title": "Still good after a month",
+      "body": "Updated: minor wear but overall great."
+    }
+settings: {}
+examples: ./.resources/Update Review.resources/examples
+order: 3000

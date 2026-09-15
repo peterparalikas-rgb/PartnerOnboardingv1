@@ -1,0 +1,10 @@
+$kind: http-request
+url: "{{baseUrl}}/reviews/:reviewId"
+method: DELETE
+headers:
+  Accept: application/json
+pathVariables:
+  reviewId: rev_456
+settings: {}
+examples: ./.resources/Delete Review.resources/examples
+order: 4000

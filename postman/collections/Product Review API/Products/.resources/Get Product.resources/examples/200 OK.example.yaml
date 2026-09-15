@@ -1,0 +1,25 @@
+$kind: http-example
+request:
+  url: "{{baseUrl}}/products/:productId"
+  method: GET
+  headers:
+    Accept: application/json
+  pathVariables:
+    productId: prod_123
+response:
+  statusCode: 200
+  statusText: OK
+  headers:
+    Content-Type: application/json
+  body:
+    type: json
+    content: |-
+      {
+        "id": "prod_123",
+        "name": "Wireless Noise-Cancelling Headphones",
+        "description": "Over-ear Bluetooth headphones with active noise cancellation and 30-hour battery life.",
+        "price": 199.99,
+        "averageRating": 4.6,
+        "reviewCount": 128
+      }
+order: 1000

@@ -1,0 +1,20 @@
+$kind: http-request
+url: "{{baseUrl}}/products/:productId/reviews"
+method: POST
+headers:
+  Content-Type: application/json
+  Accept: application/json
+pathVariables:
+  productId: prod_123
+body:
+  type: json
+  content: |-
+    {
+      "author": "Jane Doe",
+      "rating": 5,
+      "title": "Excellent product",
+      "body": "Works exactly as described and shipped fast."
+    }
+settings: {}
+examples: ./.resources/Create Review.resources/examples
+order: 1000

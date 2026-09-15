@@ -1,0 +1,14 @@
+workspace:
+  id: eec9ba34-abc5-4f7d-936c-056ba8dfed71
+cloudResources:
+  collections:
+    ../postman/collections/Product Review API: 58226427-55929d2a-0306-4568-a9f6-9213287db31e
+  globals:
+    ../postman/globals/workspace.globals.yaml: add9c5c5-d60d-4769-8bb1-0e612489a2cc
+  specs:
+    ../postman/specs/Product Review API Contract/index.yaml: 2975a967-134c-4bca-9d83-784976dd3d69
+  mocks:
+    ../postman/mocks/Product Review API Mock/config.yaml: 01a0a547-6bc9-715f-b140-da0b4a7565b9
+resourceNameMappings:
+  specs:
+    - ../postman/specs/Product Review API Contract/index.yaml: Product Review API Contract

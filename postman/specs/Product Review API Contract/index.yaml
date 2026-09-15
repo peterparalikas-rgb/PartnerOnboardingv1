@@ -1,0 +1,396 @@
+openapi: 3.0.0
+info:
+  title: Product Review API
+  version: 1.0.0
+  description: >-
+    # Product Review API
+
+
+    A simple REST API for a product review application. It manages **products**
+    and their **reviews**.
+
+
+    - **Products** have an `id`, `name`, `description`, `price`,
+    `averageRating`, and `reviewCount`.
+
+    - **Reviews** belong to a product and include an `author`, a `rating` (an
+    integer from **1 to 5**), a `title`, and a `body`, along with `createdAt`
+    and `updatedAt` timestamps.
+
+
+    All endpoints are relative to the base URL, which is stored in the
+    `{{baseUrl}}` collection variable
+    (`https://api.productreview.example.com/v1`).
+
+
+    Requests are grouped into two folders: **Products** and **Reviews**.
+servers:
+  - url: https://d657d452-55b0-48d1-ac4f-4e2df9809838.mock.pstmn.io
+paths:
+  /products:
+    get:
+      summary: List Products
+      parameters:
+        - name: page
+          in: query
+          schema:
+            type: integer
+          example: 1
+        - name: limit
+          in: query
+          schema:
+            type: integer
+          example: 20
+      responses:
+        '200':
+          description: 200 OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                        name:
+                          type: string
+                        description:
+                          type: string
+                        price:
+                          type: number
+                        averageRating:
+                          type: number
+                        reviewCount:
+                          type: integer
+                  pagination:
+                    type: object
+                    properties:
+                      page:
+                        type: integer
+                      limit:
+                        type: integer
+                      total:
+                        type: integer
+              example:
+                data:
+                  - id: prod_123
+                    name: Wireless Noise-Cancelling Headphones
+                    description: >-
+                      Over-ear Bluetooth headphones with active noise
+                      cancellation and 30-hour battery life.
+                    price: 199.99
+                    averageRating: 4.6
+                    reviewCount: 128
+                  - id: prod_124
+                    name: Stainless Steel Water Bottle
+                    description: >-
+                      Insulated 1L water bottle that keeps drinks cold for 24
+                      hours and hot for 12 hours.
+                    price: 29.95
+                    averageRating: 4.2
+                    reviewCount: 54
+                pagination:
+                  page: 1
+                  limit: 20
+                  total: 2
+      tags:
+        - Products
+  /products/{productId}:
+    get:
+      summary: Get Product
+      responses:
+        '200':
+          description: 200 OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  name:
+                    type: string
+                  description:
+                    type: string
+                  price:
+                    type: number
+                  averageRating:
+                    type: number
+                  reviewCount:
+                    type: integer
+              example:
+                id: prod_123
+                name: Wireless Noise-Cancelling Headphones
+                description: >-
+                  Over-ear Bluetooth headphones with active noise cancellation
+                  and 30-hour battery life.
+                price: 199.99
+                averageRating: 4.6
+                reviewCount: 128
+      tags:
+        - Products
+    parameters:
+      - name: productId
+        in: path
+        required: true
+        schema:
+          type: string
+        example: prod_123
+  /products/{productId}/reviews:
+    get:
+      summary: List Product Reviews
+      parameters:
+        - name: page
+          in: query
+          schema:
+            type: integer
+          example: 1
+        - name: limit
+          in: query
+          schema:
+            type: integer
+          example: 20
+      responses:
+        '200':
+          description: 200 OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                        productId:
+                          type: string
+                        author:
+                          type: string
+                        rating:
+                          type: integer
+                        title:
+                          type: string
+                        body:
+                          type: string
+                        createdAt:
+                          type: string
+                          format: date-time
+                        updatedAt:
+                          type: string
+                          format: date-time
+                  pagination:
+                    type: object
+                    properties:
+                      page:
+                        type: integer
+                      limit:
+                        type: integer
+                      total:
+                        type: integer
+              example:
+                data:
+                  - id: rev_456
+                    productId: prod_123
+                    author: Jane Doe
+                    rating: 5
+                    title: Excellent product
+                    body: Works exactly as described and shipped fast.
+                    createdAt: '2024-05-01T10:15:00Z'
+                    updatedAt: '2024-05-01T10:15:00Z'
+                  - id: rev_457
+                    productId: prod_123
+                    author: John Smith
+                    rating: 4
+                    title: Great value
+                    body: >-
+                      Comfortable and sounds good, though the case is a bit
+                      bulky.
+                    createdAt: '2024-05-03T14:22:00Z'
+                    updatedAt: '2024-05-03T14:22:00Z'
+                pagination:
+                  page: 1
+                  limit: 20
+                  total: 2
+      tags:
+        - Products
+    parameters:
+      - name: productId
+        in: path
+        required: true
+        schema:
+          type: string
+        example: prod_123
+    post:
+      summary: Create Review
+      responses:
+        '201':
+          description: 201 Created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  productId:
+                    type: string
+                  author:
+                    type: string
+                  rating:
+                    type: integer
+                  title:
+                    type: string
+                  body:
+                    type: string
+                  createdAt:
+                    type: string
+                    format: date-time
+                  updatedAt:
+                    type: string
+                    format: date-time
+              example:
+                id: rev_456
+                productId: prod_123
+                author: Jane Doe
+                rating: 5
+                title: Excellent product
+                body: Works exactly as described and shipped fast.
+                createdAt: '2024-05-01T10:15:00Z'
+                updatedAt: '2024-05-01T10:15:00Z'
+      tags:
+        - Reviews
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                author:
+                  type: string
+                rating:
+                  type: integer
+                title:
+                  type: string
+                body:
+                  type: string
+            example:
+              author: Jane Doe
+              rating: 5
+              title: Excellent product
+              body: Works exactly as described and shipped fast.
+  /reviews/{reviewId}:
+    get:
+      summary: Get Review
+      responses:
+        '200':
+          description: 200 OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  productId:
+                    type: string
+                  author:
+                    type: string
+                  rating:
+                    type: integer
+                  title:
+                    type: string
+                  body:
+                    type: string
+                  createdAt:
+                    type: string
+                    format: date-time
+                  updatedAt:
+                    type: string
+                    format: date-time
+              example:
+                id: rev_456
+                productId: prod_123
+                author: Jane Doe
+                rating: 5
+                title: Excellent product
+                body: Works exactly as described and shipped fast.
+                createdAt: '2024-05-01T10:15:00Z'
+                updatedAt: '2024-05-01T10:15:00Z'
+      tags:
+        - Reviews
+    parameters:
+      - name: reviewId
+        in: path
+        required: true
+        schema:
+          type: string
+        example: rev_456
+    put:
+      summary: Update Review
+      responses:
+        '200':
+          description: 200 OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  productId:
+                    type: string
+                  author:
+                    type: string
+                  rating:
+                    type: integer
+                  title:
+                    type: string
+                  body:
+                    type: string
+                  createdAt:
+                    type: string
+                    format: date-time
+                  updatedAt:
+                    type: string
+                    format: date-time
+              example:
+                id: rev_456
+                productId: prod_123
+                author: Jane Doe
+                rating: 4
+                title: Still good after a month
+                body: 'Updated: minor wear but overall great.'
+                createdAt: '2024-05-01T10:15:00Z'
+                updatedAt: '2024-06-02T09:05:00Z'
+      tags:
+        - Reviews
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                rating:
+                  type: integer
+                title:
+                  type: string
+                body:
+                  type: string
+            example:
+              rating: 4
+              title: Still good after a month
+              body: 'Updated: minor wear but overall great.'
+    delete:
+      summary: Delete Review
+      responses:
+        '204':
+          description: 204 No Content
+      tags:
+        - Reviews

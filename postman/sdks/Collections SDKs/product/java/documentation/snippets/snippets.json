@@ -1,0 +1,37 @@
+{
+  "endpoints": {
+    "/products": {
+      "get": "import com.productreviewapisdk.ProductReviewApiSdk;\nimport com.productreviewapisdk.models.ListProductsParameters;\n\npublic class Main {\n    public static void main(String[] args) {\n\t\tProductReviewApiSdk productReviewApiSdk = new ProductReviewApiSdk();\n\n\t\tListProductsParameters requestParameters = ListProductsParameters.builder()\n\t\t\t.page(\"1\")\n\t\t\t.limit(\"20\")\n\t\t\t.build();\n\n\t\tObject response = productReviewApiSdk.productReviewApiSdk.listProducts(requestParameters);\n\t\t\t\n\t\tSystem.out.println(response);\n    }\n}\n"
+    },
+    "/products/{productId}": {
+      "get": "import com.productreviewapisdk.ProductReviewApiSdk;\n\npublic class Main {\n    public static void main(String[] args) {\n\t\tProductReviewApiSdk productReviewApiSdk = new ProductReviewApiSdk();\n\n\t\tObject response = productReviewApiSdk.productReviewApiSdk.getProduct(\"productId\");\n\t\t\t\n\t\tSystem.out.println(response);\n    }\n}\n"
+    },
+    "/products/{productId}/reviews": {
+      "get": "import com.productreviewapisdk.ProductReviewApiSdk;\nimport com.productreviewapisdk.models.ListProductReviewsParameters;\n\npublic class Main {\n    public static void main(String[] args) {\n\t\tProductReviewApiSdk productReviewApiSdk = new ProductReviewApiSdk();\n\n\t\tListProductReviewsParameters requestParameters = ListProductReviewsParameters.builder()\n\t\t\t.page(\"1\")\n\t\t\t.limit(\"20\")\n\t\t\t.build();\n\n\t\tObject response = productReviewApiSdk.productReviewApiSdk.listProductReviews(\"productId\", requestParameters);\n\t\t\t\n\t\tSystem.out.println(response);\n    }\n}\n",
+      "post": "import com.productreviewapisdk.ProductReviewApiSdk;\nimport com.productreviewapisdk.models.CreateReviewRequest;\n\npublic class Main {\n    public static void main(String[] args) {\n\t\tProductReviewApiSdk productReviewApiSdk = new ProductReviewApiSdk();\n\n\t\tCreateReviewRequest createReviewRequest = CreateReviewRequest.builder()\n\t\t\t.author(\"Jane Doe\")\n\t\t\t.rating(5D)\n\t\t\t.title(\"Excellent product\")\n\t\t\t.body(\"Works exactly as described and shipped fast.\")\n\t\t\t.build();\n\n\t\tObject response = productReviewApiSdk.productReviewApiSdk.createReview(\"productId\", createReviewRequest);\n\t\t\t\n\t\tSystem.out.println(response);\n    }\n}\n"
+    },
+    "/reviews/{reviewId}": {
+      "get": "import com.productreviewapisdk.ProductReviewApiSdk;\n\npublic class Main {\n    public static void main(String[] args) {\n\t\tProductReviewApiSdk productReviewApiSdk = new ProductReviewApiSdk();\n\n\t\tObject response = productReviewApiSdk.productReviewApiSdk.getReview(\"reviewId\");\n\t\t\t\n\t\tSystem.out.println(response);\n    }\n}\n",
+      "put": "import com.productreviewapisdk.ProductReviewApiSdk;\nimport com.productreviewapisdk.models.UpdateReviewRequest;\n\npublic class Main {\n    public static void main(String[] args) {\n\t\tProductReviewApiSdk productReviewApiSdk = new ProductReviewApiSdk();\n\n\t\tUpdateReviewRequest updateReviewRequest = UpdateReviewRequest.builder()\n\t\t\t.rating(4D)\n\t\t\t.title(\"Still good after a month\")\n\t\t\t.body(\"Updated: minor wear but overall great.\")\n\t\t\t.build();\n\n\t\tObject response = productReviewApiSdk.productReviewApiSdk.updateReview(\"reviewId\", updateReviewRequest);\n\t\t\t\n\t\tSystem.out.println(response);\n    }\n}\n",
+      "delete": "import com.productreviewapisdk.ProductReviewApiSdk;\n\npublic class Main {\n    public static void main(String[] args) {\n\t\tProductReviewApiSdk productReviewApiSdk = new ProductReviewApiSdk();\n\n\t\tObject response = productReviewApiSdk.productReviewApiSdk.deleteReview(\"reviewId\");\n\t\t\t\n\t\tSystem.out.println(response);\n    }\n}\n"
+    }
+  },
+  "methodResponses": {
+    "/products": {
+      "get": "System.out.println(response);"
+    },
+    "/products/{productId}": {
+      "get": "System.out.println(response);"
+    },
+    "/products/{productId}/reviews": {
+      "get": "System.out.println(response);",
+      "post": "System.out.println(response);"
+    },
+    "/reviews/{reviewId}": {
+      "get": "System.out.println(response);",
+      "put": "System.out.println(response);",
+      "delete": "System.out.println(response);"
+    }
+  },
+  "example": "import com.productreviewapisdk.ProductReviewApiSdk;\nimport com.productreviewapisdk.exceptions.ApiError;\nimport com.productreviewapisdk.models.ListProductsParameters;\n  \npublic class Main {\n  public static void main(String[] args) {\n    ProductReviewApiSdk productReviewApiSdk = new ProductReviewApiSdk();\n\n    ListProductsParameters requestParameters = ListProductsParameters.builder()\n\t\t\t.page(\"1\")\n\t\t\t.limit(\"20\")\n\t\t\t.build();\n\n\n    try {\n      Object response = productReviewApiSdk.productReviewApiSdk.listProducts(requestParameters);\n        \n      System.out.println(response);\n    } catch (ApiError e) {\n      e.printStackTrace();\n    }\n\n    System.exit(0);\n  }\n}\n"
+}

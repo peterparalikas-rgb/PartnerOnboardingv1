@@ -1,0 +1,10 @@
+$kind: http-request
+url: "{{baseUrl}}/reviews/:reviewId"
+method: GET
+headers:
+  Accept: application/json
+pathVariables:
+  reviewId: rev_456
+settings: {}
+examples: ./.resources/Get Review.resources/examples
+order: 2000

@@ -1,0 +1,9 @@
+name: Product Review API Mock
+id: 01a0a547-6bc9-715f-b140-da0b4a7565b9
+protocol: http
+associations: []
+scenarios:
+  - name: default
+    id: 01a0a547-6cd1-737d-ab1e-5998c3ffe30c
+    path: ./default.js
+    default: true
